@@ -383,7 +383,7 @@ class mainwindow(QtGui.QDialog,Ui_Dialog):
     def refresh_card_thread(self):
         # Disable cards already on monitor modes
         wireless_interfaces = str(commands.getstatusoutput('airmon-ng'))
-        prev_monitor = os.listdir('/sys/class/net')
+        prev_monitor = os.listdir('/net')
         monitor_interfaces_list = []
         for monitors in prev_monitor:
             if monitors in wireless_interfaces:
@@ -393,7 +393,7 @@ class mainwindow(QtGui.QDialog,Ui_Dialog):
 
         # List Interface cards
         compatible_interface = str(commands.getoutput("airmon-ng | egrep -e '^[a-z]{2,4}[0-9]'"))
-        interface_list = os.listdir('/sys/class/net')
+        interface_list = os.listdir('/net')
         # Interate over interface output and update combo box
         if compatible_interface.count('\t') == 0:
             self.emit(QtCore.SIGNAL("interface cards not found"))
